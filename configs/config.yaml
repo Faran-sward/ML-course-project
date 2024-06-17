@@ -1,0 +1,7 @@
+exp_name: regression
+result_dir: ./results/regression
+# 第一个cuda device的编号, -1代表cpu
+first_device: 0
+# cuda device的数量, 使用cpu时无效
+gpus: 1
+seed: 42

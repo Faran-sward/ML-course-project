@@ -1,0 +1,539 @@
+                  MAE       MSE
+     class0    3.2913    4.3544
+     class1    6.0394   12.4575
+     class2   11.8056   16.5420
+     class3   10.9615   18.3565
+avg / total    6.2192   11.7441
+
+                  MAE       MSE
+     class0    3.7961    4.7694
+     class1    6.2362   12.3199
+     class2   12.0278   16.7091
+     class3   10.3846   16.7906
+avg / total    6.4589   11.5569
+
+                  MAE       MSE
+     class0    4.6505    5.4408
+     class1    6.1575   11.4926
+     class2   10.7222   15.7656
+     class3   11.5000   17.8746
+avg / total    6.6644   11.2685
+
+                  MAE       MSE
+     class0    4.6019    5.6757
+     class1    6.8976   11.7366
+     class2    8.9167   14.5840
+     class3   11.6923   17.9786
+avg / total    6.7637   11.2373
+
+                  MAE       MSE
+     class0    4.7961    5.9513
+     class1    6.7402   10.3931
+     class2    8.6111   14.1461
+     class3   11.6154   17.9465
+avg / total    6.7192   10.6218
+
+                  MAE       MSE
+     class0    5.4660    6.8429
+     class1    7.7953   10.1524
+     class2    7.1111   11.8322
+     class3   12.6538   18.5669
+avg / total    7.3219   10.4547
+
+                  MAE       MSE
+     class0    7.6796    9.9108
+     class1   10.0630   13.1083
+     class2    8.0000   12.8496
+     class3   10.3077   16.8911
+avg / total    8.9897   12.4555
+
+                  MAE       MSE
+     class0   13.9029   16.2427
+     class1   13.7874   16.7940
+     class2   11.4167   16.7871
+     class3   10.0385   16.7642
+avg / total   13.2021   16.5981
+
+                  MAE       MSE
+     class0   18.1165   20.4142
+     class1   17.6378   21.3755
+     class2   17.0000   21.4087
+     class3    9.9231   16.8066
+avg / total   17.0411   20.6733
+
+                  MAE       MSE
+     class0   20.4660   23.4206
+     class1   21.5197   26.0758
+     class2   21.0556   24.4824
+     class3   10.5000   18.4046
+avg / total   20.1096   24.3572
+
+                  MAE       MSE
+     class0   22.6699   26.7122
+     class1   23.1890   28.0583
+     class2   22.4167   25.6358
+     class3   10.5385   18.3785
+avg / total   21.7842   26.5556
+
+                  MAE       MSE
+     class0   21.7476   26.0388
+     class1   23.8504   29.0312
+     class2   23.1389   26.3423
+     class3   10.5769   18.7586
+avg / total   21.8390   26.8815
+
+                  MAE       MSE
+     class0   18.8252   23.5209
+     class1   22.0945   27.9116
+     class2   23.6389   26.7109
+     class3   10.6538   18.7750
+avg / total   20.1130   25.5604
+
+                  MAE       MSE
+     class0   17.5631   22.3804
+     class1   19.5591   25.9084
+     class2   23.6944   26.9738
+     class3   10.6538   18.7750
+avg / total   18.5719   24.2841
+
+                  MAE       MSE
+     class0   12.8835   16.7764
+     class1   14.4803   20.6876
+     class2   18.3611   22.8783
+     class3   11.8846   19.6870
+avg / total   14.1644   19.6076
+
+                  MAE       MSE
+     class0    8.6311   11.6748
+     class1   10.0236   15.8340
+     class2   13.4722   18.7446
+     class3   11.8846   19.8349
+avg / total   10.1233   15.3451
+
+                  MAE       MSE
+     class0    6.6311    8.6927
+     class1    8.0157   13.1359
+     class2   10.9167   15.6817
+     class3   12.5000   20.3006
+avg / total    8.2842   12.9891
+
+                  MAE       MSE
+     class0    4.3010    5.6577
+     class1    6.2913   11.1366
+     class2    9.7222   13.6178
+     class3   14.5385   21.5799
+avg / total    6.7466   11.3825
+
+                  MAE       MSE
+     class0    9.7184   12.8882
+     class1    8.5591   13.5248
+     class2    9.2222   13.1593
+     class3   13.4231   21.6271
+avg / total    9.4829   14.1826
+
+                  MAE       MSE
+     class0    2.5922    3.4543
+     class1    3.7953    7.3677
+     class2   10.8333   13.4619
+     class3   15.8846   22.7046
+avg / total    5.3151    9.8011
+
+                  MAE       MSE
+     class0    3.2427    6.3199
+     class1    4.2520    8.6224
+     class2   10.4444   13.1043
+     class3   16.0769   22.8086
+avg / total    5.7123   10.6732
+
+                  MAE       MSE
+     class0    3.4757    6.4220
+     class1    4.5591    9.6779
+     class2    9.9167   13.1920
+     class3   16.0385   22.7216
+avg / total    5.8596   11.0774
+
+                  MAE       MSE
+     class0    3.8155    6.6501
+     class1    5.1260   10.6656
+     class2    9.1389   13.2738
+     class3   15.9615   22.6860
+avg / total    6.1233   11.5162
+
+                  MAE       MSE
+     class0    4.1456    6.9317
+     class1    6.2362   11.8873
+     class2    7.8611   11.9617
+     class3   15.1154   22.0567
+avg / total    6.4897   11.8054
+
+                  MAE       MSE
+     class0    4.2816    7.0649
+     class1    6.5669   12.0465
+     class2    8.0833   12.0865
+     class3   15.2308   22.1064
+avg / total    6.7192   11.9267
+
+                  MAE       MSE
+     class0    4.0777    6.9043
+     class1    5.8425   10.9437
+     class2    7.7222   11.3284
+     class3   16.3077   22.9028
+avg / total    6.3836   11.4644
+
+                  MAE       MSE
+     class0    3.4175    4.4329
+     class1    5.8189   10.8341
+     class2    7.7778   11.3749
+     class3   16.3077   22.9028
+avg / total    6.1473   10.9836
+
+                  MAE       MSE
+     class0    2.9515    4.0049
+     class1    5.3858   10.5457
+     class2    8.7778   12.7519
+     class3   15.4231   22.2529
+avg / total    5.8390   10.8705
+
+                  MAE       MSE
+     class0    2.6117    3.5867
+     class1    4.4331    8.4625
+     class2    8.8611   12.8398
+     class3   15.4615   22.0052
+avg / total    5.3185    9.9562
+
+                  MAE       MSE
+     class0    2.2816    3.2095
+     class1    4.3937    8.3854
+     class2    9.1944   13.1877
+     class3   15.3462   22.0428
+avg / total    5.2158    9.9459
+
+                  MAE       MSE
+     class0    2.2621    3.1669
+     class1    4.3543    8.0329
+     class2    8.9167   13.1434
+     class3   15.2308   21.9370
+avg / total    5.1473    9.7852
+
+                  MAE       MSE
+     class0    2.2136    3.1003
+     class1    4.0630    7.2089
+     class2    9.6111   14.2945
+     class3   15.6154   22.0332
+avg / total    5.1233    9.7165
+
+                  MAE       MSE
+     class0    2.2524    3.1653
+     class1    4.3228    8.2429
+     class2   10.1389   14.6278
+     class3   14.7692   21.1369
+avg / total    5.2397    9.9623
+
+                  MAE       MSE
+     class0    2.4466    3.2471
+     class1    4.2756    8.2218
+     class2   11.0278   15.6000
+     class3   13.5385   20.2142
+avg / total    5.2877    9.9753
+
+                  MAE       MSE
+     class0    2.5534    3.3458
+     class1    4.2047    8.1434
+     class2   11.6667   16.1589
+     class3   13.2308   20.0538
+avg / total    5.3459   10.0395
+
+                  MAE       MSE
+     class0    2.7379    3.4641
+     class1    4.0866    8.3690
+     class2   12.4444   17.0945
+     class3   12.8462   19.8339
+avg / total    5.4212   10.2835
+
+                  MAE       MSE
+     class0    2.7670    3.4962
+     class1    4.1969    8.5835
+     class2   12.4167   17.0416
+     class3   12.9615   20.0029
+avg / total    5.4863   10.3821
+
+                  MAE       MSE
+     class0    2.6408    3.8541
+     class1    3.8425    7.3420
+     class2   12.0000   16.4587
+     class3   12.1154   19.4709
+avg / total    5.1610    9.7897
+
+                  MAE       MSE
+     class0    3.6408    4.6956
+     class1    4.2283    8.6247
+     class2    9.7778   12.8474
+     class3   13.5000   21.0503
+avg / total    5.5308    9.9967
+
+                  MAE       MSE
+     class0    3.6602    4.7039
+     class1    4.2835    8.6060
+     class2    9.8056   12.8160
+     class3   13.3462   20.9661
+avg / total    5.5514    9.9703
+
+                  MAE       MSE
+     class0    3.5049    4.6016
+     class1    4.1575    8.4806
+     class2   10.0556   12.8539
+     class3   13.3077   20.9597
+avg / total    5.4692    9.9114
+
+                  MAE       MSE
+     class0    3.1456    4.2289
+     class1    4.1890    8.4490
+     class2   10.6667   13.4288
+     class3   14.1923   21.3910
+avg / total    5.5103   10.0166
+
+                  MAE       MSE
+     class0    2.9126    4.0626
+     class1    3.9134    7.4923
+     class2   10.7222   13.4949
+     class3   14.1538   21.3884
+avg / total    5.3116    9.6655
+
+                  MAE       MSE
+     class0    2.5825    3.7443
+     class1    4.0079    7.5258
+     class2   10.7500   13.4402
+     class3   13.8462   20.4995
+avg / total    5.2123    9.4481
+
+                  MAE       MSE
+     class0    2.4660    3.6391
+     class1    4.1890    7.6168
+     class2   10.0556   13.0958
+     class3   15.9231   21.7309
+avg / total    5.3493    9.6486
+
+                  MAE       MSE
+     class0    2.3301    3.2887
+     class1    4.2598    7.6637
+     class2   10.4167   13.1962
+     class3   16.1154   21.8113
+avg / total    5.3938    9.6534
+
+                  MAE       MSE
+     class0    2.3010    3.2872
+     class1    4.4094    7.8860
+     class2    9.5278   12.5000
+     class3   15.4231   20.7707
+avg / total    5.2774    9.4094
+
+                  MAE       MSE
+     class0    2.1262    3.1423
+     class1    4.4724    7.7926
+     class2    9.4722   12.5022
+     class3   15.3846   20.7661
+avg / total    5.2329    9.3574
+
+                  MAE       MSE
+     class0    2.1359    3.1469
+     class1    4.7165    8.7155
+     class2    9.0556   12.5011
+     class3   15.8077   21.4126
+avg / total    5.3288    9.8297
+
+                  MAE       MSE
+     class0    2.2136    3.2561
+     class1    4.7638    9.0819
+     class2    9.4444   12.8214
+     class3   14.2308   20.5763
+avg / total    5.2842    9.8782
+
+                  MAE       MSE
+     class0    2.4466    3.7881
+     class1    4.7244    9.0736
+     class2    9.0833   12.6875
+     class3   14.4231   20.7892
+avg / total    5.3219    9.9599
+
+                  MAE       MSE
+     class0    2.6408    3.9585
+     class1    4.4961    8.8900
+     class2    8.7222   12.3918
+     class3   14.3846   20.7846
+avg / total    5.2432    9.8640
+
+                  MAE       MSE
+     class0    2.6602    3.9315
+     class1    4.4488    8.9085
+     class2    8.5556   12.1518
+     class3   13.3846   20.3564
+avg / total    5.1199    9.7505
+
+                  MAE       MSE
+     class0    2.7282    3.9793
+     class1    4.4961    8.9350
+     class2    8.1944   11.9571
+     class3   13.4231   20.4253
+avg / total    5.1233    9.7510
+
+                  MAE       MSE
+     class0    2.7864    4.0853
+     class1    4.9370   10.0342
+     class2    8.1944   11.9432
+     class3   14.1154   20.7670
+avg / total    5.3973   10.2793
+
+                  MAE       MSE
+     class0    2.7184    3.9634
+     class1    4.6929    9.5843
+     class2    8.2222   11.9583
+     class3   14.1538   20.7698
+avg / total    5.2740   10.0764
+
+                  MAE       MSE
+     class0    3.0000    4.3656
+     class1    4.9055    9.4365
+     class2    8.2778   12.6029
+     class3   15.5385   22.2123
+avg / total    5.5959   10.4387
+
+                  MAE       MSE
+     class0    2.0680    2.9113
+     class1    3.8346    6.7445
+     class2    9.3889   13.2623
+     class3   13.8077   21.1651
+avg / total    4.7842    9.1840
+
+                  MAE       MSE
+     class0    2.1165    2.9951
+     class1    3.9055    6.8263
+     class2    9.4722   13.1456
+     class3   14.5385   21.4763
+avg / total    4.9075    9.2631
+
+                  MAE       MSE
+     class0    2.2427    3.1174
+     class1    4.0787    7.2264
+     class2    8.9444   12.7563
+     class3   15.1923   21.9431
+avg / total    5.0205    9.4380
+
+                  MAE       MSE
+     class0    2.2718    3.1623
+     class1    4.1811    7.3843
+     class2    8.6944   12.3051
+     class3   15.6538   21.9589
+avg / total    5.0856    9.4258
+
+                  MAE       MSE
+     class0    2.3107    3.2291
+     class1    4.2205    7.3859
+     class2    8.7222   12.3378
+     class3   15.6538   21.7689
+avg / total    5.1199    9.4003
+
+                  MAE       MSE
+     class0    2.2330    3.1776
+     class1    4.1181    7.2389
+     class2    8.7500   12.3435
+     class3   15.7308   21.8254
+avg / total    5.0582    9.3569
+
+                  MAE       MSE
+     class0    2.3010    3.2065
+     class1    4.0709    7.2247
+     class2    9.3611   13.0586
+     class3   15.6538   21.7777
+avg / total    5.1301    9.4648
+
+                  MAE       MSE
+     class0    2.2427    3.1638
+     class1    4.1260    7.2590
+     class2    9.3056   12.8485
+     class3   15.7308   21.8729
+avg / total    5.1336    9.4552
+
+                  MAE       MSE
+     class0    2.0777    2.9821
+     class1    3.9921    7.0794
+     class2    9.4167   13.1138
+     class3   15.7308   21.8729
+avg / total    5.0308    9.4200
+
+                  MAE       MSE
+     class0    2.0583    2.9658
+     class1    3.9291    6.9921
+     class2    9.3056   13.1011
+     class3   15.6923   21.9405
+avg / total    4.9795    9.4016
+
+                  MAE       MSE
+     class0    2.0000    2.8862
+     class1    3.7559    6.6635
+     class2    9.9722   13.4712
+     class3   15.8846   22.1698
+avg / total    4.9829    9.4014
+
+                  MAE       MSE
+     class0    2.0000    2.8828
+     class1    3.8740    6.7451
+     class2   10.1389   13.8233
+     class3   15.8846   22.1698
+avg / total    5.0548    9.4890
+
+                  MAE       MSE
+     class0    1.9029    2.8147
+     class1    3.8661    6.7035
+     class2    9.9167   13.7790
+     class3   15.8846   22.1698
+avg / total    4.9897    9.4610
+
+                  MAE       MSE
+     class0    1.9029    2.8043
+     class1    3.8976    6.7000
+     class2   10.6667   14.3624
+     class3   16.6923   22.6376
+avg / total    5.1678    9.6623
+
+                  MAE       MSE
+     class0    1.7961    2.7002
+     class1    3.9291    6.6812
+     class2   11.3333   14.7874
+     class3   16.6923   22.6529
+avg / total    5.2260    9.7282
+
+                  MAE       MSE
+     class0    1.7476    2.6292
+     class1    4.0000    6.7076
+     class2   11.5556   14.9034
+     class3   16.8077   22.6605
+avg / total    5.2774    9.7526
+
+                  MAE       MSE
+     class0    1.7379    2.5864
+     class1    4.0000    6.7275
+     class2   11.4444   14.7045
+     class3   16.8077   22.6809
+avg / total    5.2603    9.7215
+
+                  MAE       MSE
+     class0    1.7670    2.5882
+     class1    4.0079    6.7141
+     class2   11.4444   14.7045
+     class3   17.1538   22.8035
+avg / total    5.3048    9.7431
+
+                  MAE       MSE
+     class0    1.7476    2.6292
+     class1    4.0551    6.7351
+     class2   11.8611   14.9954
+     class3   17.9231   23.5911
+avg / total    5.4384    9.9722
+
+                  MAE       MSE
+     class0    1.7476    2.6292
+     class1    4.0551    6.7351
+     class2   11.8611   14.9954
+     class3   17.9231   23.5911
+avg / total    5.4384    9.9722
+

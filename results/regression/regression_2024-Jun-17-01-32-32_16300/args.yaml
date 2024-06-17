@@ -1,0 +1,10 @@
+devices:
+- !!python/object/apply:torch.device
+  - cuda
+  - 0
+exp_name: regression
+first_device: 0
+gpus: 1
+result_dir: ./results/regression
+save_dir: ./results/regression/regression_2024-Jun-17-01-32-32_16300
+seed: 42
