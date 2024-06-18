@@ -10,8 +10,6 @@
 
 ## 问题分析
 
-
-
 在痤疮检测和分级任务中，面临的主要挑战是痤疮通常为小目标，且在皮肤镜图像中的分布密集不均。我们在初步尝试中使用了YOLOv5和Faster-RCNN等目标检测模型，发现它们在小目标检测方面效果不理想，原因主要包括以下几点：
 
 1. **小目标特征不明显**：痤疮的尺寸较小，相对于整个图像的比例较低，传统目标检测模型容易忽略小目标或难以准确定位。
@@ -39,6 +37,21 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
  DETR是第一个使用[Transformer](https://so.csdn.net/so/search?q=Transformer&spm=1001.2101.3001.7020)实现端到端目标检测的方法。这种方法不需要预定义的候选框或先验知识，并且可以同时执行分类和定位任务。
 
  工作流程：CNN生成的特征图将被送入Transformer，然后经过一系列的自注意力层和前馈神经网络层，最终得到一组对象的表示。每个对象的表示由一个类别分数和四个坐标值组成。这些类别分数和坐标值是预测得出的，它们表示对象在图像中的位置和类别信息。解码器将这些对象解码为一组检测结果。在解码过程中，匹配函数将预测类别和预测坐标与这些对象进行匹配，从而找到与预测类别和预测坐标最匹配的对象，并将其作为最终的检测结果输出。
+
+#### Faster-rcnn
+
+![image-20240618181453309](./imgs/faster-rcnn.png)
+
+在结构上，Faster RCNN将特征抽取(feature extraction)，proposal提取，bounding box regression(rect refine)，classification都整合在了一个网络中。
+
+依作者看来，如上图，Faster RCNN其实可以分为4个主要内容：
+
+1. Conv layers。作为一种CNN网络目标检测方法，Faster RCNN首先使用一组基础的conv+relu+pooling层提取image的feature maps。该feature maps被共享用于后续RPN层和全连接层。
+2. Region Proposal Networks。RPN网络用于生成region proposals。该层通过softmax判断anchors属于positive或者negative，再利用bounding box regression修正anchors获得精确的proposals。
+3. Roi Pooling。该层收集输入的feature maps和proposals，综合这些信息后提取proposal feature maps，送入后续全连接层判定目标类别。
+4. Classification。利用proposal feature maps计算proposal的类别，同时再次bounding box regression获得检测框最终的精确位置。
+
+其中，为了适应本任务数据特征：痤疮小且数量多的特点，我们将anchor选择框适当缩小；最终最好的结果，四类别平均准确率也仅仅在10%左右。
 
 ### 痤疮分级与应用
 
