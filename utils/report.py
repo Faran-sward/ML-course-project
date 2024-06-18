@@ -17,7 +17,7 @@ def creat_class_name(classNumber):
     return number
 
 
-def report_precision_se_sp_yi(y_predicitions,  groundture):  # 计算分类模型准确率、敏感度、特异度和Youden指数，输入为预测结果和真实标签
+def calculate_metrics(y_predicitions, groundture):  # 计算分类模型准确率、敏感度、特异度和Youden指数，输入为预测结果和真实标签
     class_list1 = np.unique(groundture)
     Result = []
     SE, SP, _ = sensitivity_specificity_support(groundture, y_predicitions)
@@ -68,7 +68,7 @@ def report_precision_se_sp_yi(y_predicitions,  groundture):  # 计算分类模�
     # print(report)
     return Result, AVE_ACC, report
 
-def report_mae_mse(y_ture, y_predicitions,classification):
+def calculate_mae_mse(y_ture, y_predicitions, classification):
     classed = np.unique(classification)
     target_name = creat_class_name(classed.shape[0])
     target_name.append('avg / total')

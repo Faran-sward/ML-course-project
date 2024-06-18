@@ -1,6 +1,6 @@
 from utils.utils import  AverageMeter
-from utils.genLD import genLD
-from utils.report import report_precision_se_sp_yi, report_mae_mse
+from utils.genLD import generate_distribution
+from utils.report import calculate_metrics, calculate_mae_mse
 from timeit import default_timer as timer
 from model.create_net import adjust_learning_rate_new
 import torch
@@ -27,28 +27,27 @@ def train(config_dict):
         losses = AverageMeter()  # 记录计数结果，分类结果，预测结果的损失
         # '''
         config_dict["cnn"].train()  # 将模型设置为训练模式，然后迭代训练数据
-        for step, (b_x, b_y, b_l) in enumerate(config_dict["train_loader"]):   # gives batch data, normalize x when iterate train_loader
-            # b_x 表示当前批次的输入数据
-            # b_y 表示当前批次的标签数据
-            # b_l 表示当前批次的计数信息
-            b_x = b_x.cuda()
-            b_l = b_l.numpy()
+        for step, (image, _, counting) in enumerate(config_dict["train_loader"]):   # gives batch data, normalize x when iterate train_loader
+            # image 表示当前批次的输入数据
+            # counting 表示当前批次的计数信息
+            image = image.cuda()
+            counting = counting.numpy()
 
-            # generating ld
-            b_l = b_l - 1  # ？
-            ld = genLD(b_l, config_dict["sigma"], 'klloss', 65)
+            # generating counting_distribution
+            counting = counting - 1  # ？
+            counting_distribution = generate_distribution(counting, config_dict["sigma"], 'klloss', 65)
             # 计算各个类别的总和
-            ld_4 = np.vstack((np.sum(ld[:, :5], 1), np.sum(ld[:, 5:20], 1), np.sum(ld[:, 20:50], 1), np.sum(ld[:, 50:], 1))).transpose()
-            ld = torch.from_numpy(ld).cuda().float()
-            ld_4 = torch.from_numpy(ld_4).cuda().float()
+            grading_distribution = np.vstack((np.sum(counting_distribution[:, :5], 1), np.sum(counting_distribution[:, 5:20], 1), np.sum(counting_distribution[:, 20:50], 1), np.sum(counting_distribution[:, 50:], 1))).transpose()
+            counting_distribution = torch.from_numpy(counting_distribution).cuda().float()
+            grading_distribution = torch.from_numpy(grading_distribution).cuda().float()
 
             # train
             config_dict["cnn"].train()
 
-            cls, cou, cou2cls = config_dict["cnn"](b_x, None)  # nn output
-            loss_cls = config_dict["kl_loss_1"](torch.log(cls), ld_4) * 4.0
-            loss_cou = config_dict["kl_loss_2"](torch.log(cou), ld) * 65.0
-            loss_cls_cou = config_dict["kl_loss_3"](torch.log(cou2cls), ld_4) * 4.0
+            cls, cou, cou2cls = config_dict["cnn"](image, None)  # nn output
+            loss_cls = config_dict["kl_loss_1"](torch.log(cls), grading_distribution) * 4.0
+            loss_cou = config_dict["kl_loss_2"](torch.log(cou), counting_distribution) * 65.0
+            loss_cls_cou = config_dict["kl_loss_3"](torch.log(cou2cls), grading_distribution) * 4.0
             loss = (loss_cls + loss_cls_cou) * 0.5 * config_dict["lam"] + loss_cou * (1.0 - config_dict["lam"])
             
             config_dict["writer"].add_scalar('loss_cls_' + str(config_dict["cross_validation_idx"]), loss_cls, epoch * len(config_dict["train_loader"]) + step)
@@ -60,10 +59,10 @@ def train(config_dict):
             loss.backward()                 # backpropagation, compute gradients
             config_dict["optimizer"].step()                # apply gradients
 
-            losses_cls.update(loss_cls.item(), b_x.size(0))
-            losses_cou.update(loss_cou.item(), b_x.size(0))
-            losses_cou2cls.update(loss_cls_cou.item(), b_x.size(0))
-            losses.update(loss.item(), b_x.size(0))  # 更新损失函数的累计值
+            losses_cls.update(loss_cls.item(), image.size(0))
+            losses_cou.update(loss_cou.item(), image.size(0))
+            losses_cou2cls.update(loss_cls_cou.item(), image.size(0))
+            losses.update(loss.item(), image.size(0))  # 更新损失函数的累计值
             
             message = '%s %6.0f |%s %4.0f | %0.3f | %0.3f | %0.3f | %0.3f | %s\n' % ( \
                 "train", config_dict["epoch"],
@@ -89,40 +88,40 @@ def evaluate(config_dict):
     with torch.no_grad():
         test_loss = 0
         test_corrects = 0  # 根据模型的预测结果和真实标签计算准确率
-        y_true = np.array([])
-        y_pred = np.array([])
-        y_pred_m = np.array([])
-        l_true = np.array([])
-        l_pred = np.array([])
+        grading_gt = np.array([])
+        counting_pred = np.array([])
+        merge_gt = np.array([])
+        counting_gt = np.array([])
+        grading_pred = np.array([])
         config_dict["cnn"].eval()  # 将模型设置为评估模式，来确保模型在测试阶段
         
-        for step, (test_x, test_y, test_l) in enumerate(config_dict["test_loader"]):   # gives batch data, normalize x when iterate train_loader
+        for step, (image, grading, counting) in enumerate(config_dict["test_loader"]):   # gives batch data, normalize x when iterate train_loader
 
-            test_x = test_x.cuda()
-            test_y = test_y.cuda()
+            image = image.cuda()
+            grading = grading.cuda()
 
-            y_true = np.hstack((y_true, test_y.data.cpu().numpy()))
-            l_true = np.hstack((l_true, test_l.data.cpu().numpy()))
+            grading_gt = np.hstack((grading_gt, grading.data.cpu().numpy()))
+            counting_gt = np.hstack((counting_gt, counting.data.cpu().numpy()))
 
             config_dict["cnn"].eval()
 
-            cls, cou, cou2cls = config_dict["cnn"](test_x, None)
+            cls, cou, cou2cls = config_dict["cnn"](image, None)
 
-            loss = config_dict["loss_func"](cou2cls, test_y)
+            loss = config_dict["loss_func"](cou2cls, grading)
             test_loss += loss.data
 
-            _, preds_m = torch.max(cls + cou2cls, 1)
+            _, merge_pred = torch.max(cls + cou2cls, 1)
             _, preds = torch.max(cls, 1)
             # preds = preds.data.cpu().numpy()
-            y_pred = np.hstack((y_pred, preds.data.cpu().numpy()))
-            y_pred_m = np.hstack((y_pred_m, preds_m.data.cpu().numpy()))
+            counting_pred = np.hstack((counting_pred, preds.data.cpu().numpy()))
+            merge_gt = np.hstack((merge_gt, merge_pred.data.cpu().numpy()))
 
             _, preds_l = torch.max(cou, 1)
             preds_l = (preds_l + 1).data.cpu().numpy()
             # preds_l = cou2cou.data.cpu().numpy()
-            l_pred = np.hstack((l_pred, preds_l))
+            grading_pred = np.hstack((grading_pred, preds_l))
 
-            batch_corrects = torch.sum((preds == test_y)).data.cpu().numpy()
+            batch_corrects = torch.sum((preds == grading)).data.cpu().numpy()
             test_corrects += batch_corrects
             
             config_dict["writer"].add_scalar('test_loss_' + str(config_dict["cross_validation_idx"]), loss, config_dict["evaluate_counter"])
@@ -138,9 +137,9 @@ def evaluate(config_dict):
                 test_loss.data,
                 test_acc)
 
-        _, _, pre_se_sp_yi_report = report_precision_se_sp_yi(y_pred, y_true)
-        _, _, pre_se_sp_yi_report_m = report_precision_se_sp_yi(y_pred_m, y_true)
-        _, MAE, MSE, mae_mse_report = report_mae_mse(l_true, l_pred, y_true)
+        _, _, pre_se_sp_yi_report = calculate_metrics(counting_pred, grading_gt)
+        _, _, pre_se_sp_yi_report_m = calculate_metrics(merge_gt, grading_gt)
+        _, MAE, MSE, mae_mse_report = calculate_mae_mse(counting_gt, grading_pred, grading_gt)
 
         if True:
             config_dict["_log"].write(str(pre_se_sp_yi_report) + '\n')
