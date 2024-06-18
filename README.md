@@ -37,3 +37,7 @@ Table 1. ViT+ResNet(KL-Loss) 在痤疮数量的预测效果：AVE_ACC=0.7979
 | avg / total |  0.8047   | 0.7620 | 0.9217 | 0.6837 |
 
 Table 2. ViT+ResNet(KL-Loss) 在痤疮严重程度的预测效果：AVE_ACC=0.8014
+
+### Acknowledgments
+
+This project uses code developed by Guillaume Lemaitre and Dariusz Brzezinski, which is available under the MIT License.
