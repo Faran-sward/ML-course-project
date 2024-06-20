@@ -43,7 +43,13 @@ def train(config_dict):
 
             # train
             config_dict["cnn"].train()
+            """
+            这段代码实现了损失函数的实现。
 
+            代码引用于 Joint Acne Image Grading and Counting via Label Distribution Learning.
+
+            作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+            """
             cls, cou, cou2cls = config_dict["cnn"](image, None)  # nn output
             loss_cls = config_dict["kl_loss_1"](torch.log(cls), grading_distribution) * 4.0
             loss_cou = config_dict["kl_loss_2"](torch.log(cou), counting_distribution) * 65.0
@@ -109,6 +115,14 @@ def evaluate(config_dict):
 
             loss = config_dict["loss_func"](cou2cls, grading)
             test_loss += loss.data
+
+            """
+            这段代码实现了损失函数的实现。
+
+            代码引用于 Joint Acne Image Grading and Counting via Label Distribution Learning.
+
+            作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+            """
 
             _, merge_pred = torch.max(cls + cou2cls, 1)
             _, preds = torch.max(cls, 1)

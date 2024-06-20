@@ -4,7 +4,15 @@ from PIL import Image
 from torch.utils.data.dataset import Dataset
 import numpy as np
 
+
 class DatasetProcessing(Dataset):
+    """
+    这个类实现了读取ACNE04数据集。
+
+    代码引用于 Joint Acne Image Grading and Counting via Label Distribution Learning.
+
+    作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+    """
     def __init__(self, data_path, img_filename, num_classes, transform=None):
         self.img_path = data_path
         self.transform = transform

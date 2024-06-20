@@ -1,5 +1,12 @@
 # 基于皮肤镜图像的痤疮分级任务
 
+## 成员分工
+
+- 饶稷：31%，主实验设计，模型调优
+- 宓田田：23%，ResNet方法实现与ViT方法实现
+- 李恒鑫：23%，痤疮检测方法调研，模型训练
+- 李奥：23%，目标检测方法调研，实验环境构建
+
 ## 背景介绍
 
 痤疮(acne)是一种常见的慢性炎症性皮肤疾病，主要症状表现为皮肤中的皮脂腺过度分泌油脂，或是皮肤中角质发生代谢异常，从而导致的毛孔堵塞。痤疮常发于青少年群体，据研究，痤疮常与压力过大，加班熬夜，饮食不规律等不良习惯有关，严重者影响患者的外观和生活质量。
@@ -24,13 +31,13 @@
 
 我们调研了计算机视觉领域的目标检测任务中一些常用的方法，包括YOLO-v5, DTER, Faster-Rcnn等。
 
-####  YOLO-V5
+####  【现成方法实验】YOLO-V5
 
 ![img5](./imgs/img5.png)
 
 YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为一个回归问题，通过卷积神经网络直接预测目标的边界框和类别概率。YOLOv5 在预测时考虑整个图像的信息，而不是局部区域，这有助于减少背景错误和提高检测的准确性，整个检测流程可以通过梯度下降一次性完成，无需复杂的流程和额外的组件。YOLOv5 能够在保持高准确度的同时，实现快速的检测速度，适合多种应用场景。
 
-#### DTER
+#### 【现成方法实验】DTER
 
 ![img6](./imgs/img6.png)
 
@@ -38,7 +45,7 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
  工作流程：CNN生成的特征图将被送入Transformer，然后经过一系列的自注意力层和前馈神经网络层，最终得到一组对象的表示。每个对象的表示由一个类别分数和四个坐标值组成。这些类别分数和坐标值是预测得出的，它们表示对象在图像中的位置和类别信息。解码器将这些对象解码为一组检测结果。在解码过程中，匹配函数将预测类别和预测坐标与这些对象进行匹配，从而找到与预测类别和预测坐标最匹配的对象，并将其作为最终的检测结果输出。
 
-#### Faster-rcnn
+#### 【现成方法实验】Faster-rcnn
 
 ![image-20240618181453309](./imgs/faster-rcnn.png)
 
@@ -57,7 +64,7 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
 一般来说，这些方法可以分为两大类: 传统的基于计算机视觉的方法和基于机器学习的方法以及基于深度学习的方法。这部分总结了这两组中的一些主要研究。
 
-#### Digital Assessment of Facial Acne Vulgaris(2014 I2MTC Proceedings)
+#### 【方法研究】Digital Assessment of Facial Acne Vulgaris(2014 I2MTC Proceedings)
 
 ![img1](./imgs/img1.png)
 
@@ -67,7 +74,7 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
 系统主要通过颜色和直径这两个特征来识别和区分不同类型的痤疮，如丘疹、脓包、结节或囊肿。基于这些特征，系统进一步评估痤疮的严重程度，分类为轻度、中度、重度和极重度，为临床诊断和治疗提供参考。
 
-#### Acne Detection Using Speeded up Robust Features and Quantification Using K-Nearest Neighbors Algorithm (2014 ICCBS)
+#### 【方法研究】Acne Detection Using Speeded up Robust Features and Quantification Using K-Nearest Neighbors Algorithm (2014 ICCBS)
 
 ![img2](./imgs/img2.png)
 
@@ -75,7 +82,7 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
 这篇文章提出了一种使用加速稳健特征（SURF）进行痤疮检测的方法，并根据五种设计的特征进行分类：色调均值、红色的标准偏差（SD）、绿色的标准偏差、蓝色的标准偏差以及圆度。此外，还采用了K最近邻（KNN）算法进行量化评估。研究结果显示，该方法的平均准确率为68%，敏感性为73%，精确度为84%。然而，这样的准确率对于临床目的来说是不够的。
 
-#### Joint Acne Image Grading and Counting via Label Distribution Learning(2019 ICCV)
+#### 【方法复现与思路借鉴】Joint Acne Image Grading and Counting via Label Distribution Learning(2019 ICCV)
 
 ![img3](./imgs/img3.png)
 
@@ -85,7 +92,7 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
 输入图像被重新调整大小并通过CNN主干模型（ResNet-50）处理。然后，框架分为两个分支。分级分支全局估计痤疮的严重程度。计数分支首先预测痤疮病变数量的标签分布。然后将其转换为痤疮严重程度的标签分布。计数模型同时对痤疮严重程度进行分级，并预测病变数量，以提供痤疮诊断的证据。最后，根据医学标准，将全局分级和局部计数模型的预测结果合并。
 
-#### DED: Diagnostic Evidence Distillation for acne severity grading on face images (2023 Expert Systems With Applications EI)
+#### 【思路借鉴】DED: Diagnostic Evidence Distillation for acne severity grading on face images (2023 Expert Systems With Applications EI)
 
 ![img4](./imgs/img4.png)
 
@@ -97,19 +104,19 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
 我们对已经公开的数据集进行了收集，结果如下：
 
-### **CelebAMask-HQ**
+### 【方法研究】**CelebAMask-HQ**
 
 - **描述**: CelebAMask-HQ 是一个基于 CelebA-HQ 数据集制作的大规模人脸图像数据集，从原始的 CelebA 数据集中选取了 30,000 张高分辨率人脸图像。每幅图像都配备了对应的面部属性分割掩模，手工标注的掩模分辨率为 512×512，包含 19 个类别，如皮肤、鼻子、眼睛、眉毛、耳朵、口腔、嘴唇、头发、帽子、眼镜、耳环、项链、脖子和衣服等面部组件和配饰。
 
-### **Flickr-Faces-HQ (FFHQ)**
+### 【方法研究】**Flickr-Faces-HQ (FFHQ)**
 
 - **描述**: FFHQ 是为生成对抗网络（GAN）基准测试而创建的高质量人脸图像数据集，包含 70,000 张 1024×1024 分辨率的高质量 PNG 图像。该数据集展现了年龄、种族和背景的广泛多样性，并包含眼镜、太阳镜等配饰。部分数据集经过了经验丰富的皮肤科医生的重新注释，涵盖了 2,307 张图像，用于痤疮严重程度的分类，最终因样本不平衡转化为二元分类问题。
 
-### **Nestlé Skin Health**
+### 【方法研究】**Nestlé Skin Health**
 
 - **描述**: 由微软与雀巢皮肤健康盾（NSH）合作的数据集，专注于皮肤病学条件或皮肤健康。这个数据集用于医学图像分析，特别是用于根据上传的自拍图片评估用户痤疮的严重程度，提供与皮肤科医生相当的诊断准确性。此外，该数据集还推荐适合用户痤疮严重程度的治疗方案和护肤产品，同时提供性别、年龄、皮肤类型等人口统计信息。
 
-### **ACNE04 & ACNE-Shanghai**
+### 【方法研究】**ACNE04 & ACNE-Shanghai**
 
 - **描述**: ACNE04 数据集包含 3,756 张包含痤疮的人脸图像，用于痤疮图像的分级和计数研究。该数据集按照 Hayashi 标准进行了局部病变数量和全局痤疮严重程度的注释。
 
@@ -149,9 +156,9 @@ YOLOv5 继承了YOLO系列算法的核心思想，即将目标检测任务视为
 
 ## 方法设计
 
-### 网络设置
+### 【已有方法复现, 创新点: 架构设计与特征融合】网络设置
 
-ResNet（Residual Network）是一种经典的深度卷积神经网络（CNN），通过引入残差连接来解决深层网络训练中的梯度消失问题。我们将利用ResNet模型来预测皮肤镜图像中的痤疮数量和严重程度。
+【已有方法复现】ResNet（Residual Network）是一种经典的深度卷积神经网络（CNN），通过引入残差连接来解决深层网络训练中的梯度消失问题。我们将利用ResNet模型来预测皮肤镜图像中的痤疮数量和严重程度。
 
 ```python
 # ResNet
@@ -182,7 +189,7 @@ class BasicBlock(nn.Module):
         return out
 ```
 
-ViT：模型设计采用多分支网络结构，不同分支负责提取不同尺度和不同语义层次的特征。每个分支可以专注于图像的某一特定方面，确保全面捕捉图像信息，并且引入通道注意力机制，增强补丁嵌入的特征提取能力。通道注意力机制能够动态调整每个通道的重要性，使模型更加关注关键特征，提高整体特征表示的质量。
+【已有方法复现】ViT：模型设计采用多分支网络结构，不同分支负责提取不同尺度和不同语义层次的特征。每个分支可以专注于图像的某一特定方面，确保全面捕捉图像信息，并且引入通道注意力机制，增强补丁嵌入的特征提取能力。通道注意力机制能够动态调整每个通道的重要性，使模型更加关注关键特征，提高整体特征表示的质量。
 
 ```python
 class ViT(nn.Module):
@@ -222,13 +229,55 @@ class ViT(nn.Module):
         return self.mlp_head(x)
 ```
 
-### 损失函数设置：
+【创新点: 架构设计与特征融合】我们提出的模型结合了两种神经网络架构：ResNet和Vision Transformer，以及一个特征融合和分类模块。在这里，ResNet被用来处理输入的皮肤图像，捕捉局部的纹理和形状信息。ResNet的输出是一系列特征图，这些特征图包含了从输入图像中提取的关键信息。ViT将图像分割成多个小块（patches），然后利用自注意力机制来理解各个块之间的关系。这有助于模型捕获图像的全局特征。
+
+图中显示了一个将ResNet和ViT输出的特征合并的步骤。特征融合是一个重要的过程，因为它结合了局部特征和全局特征，为最终的分类提供了一个更全面的信息视图。融合后的特征被送入一个或多个全连接层，这些层的目的是基于提取和融合的特征来做出最终的判断。
+
+![img8](./imgs/img8.png)
+
+```python
+class FusionModel(nn.Module):
+    def __init__(self, num_classes, num_count, hidden_dim=1024):
+        super(FusionModel, self).__init__()
+        self.vit = ViT(image_size=224, patch_size=16, num_classes=hidden_dim, dim=512, depth=16, heads=8, mlp_dim=1024,
+                       dropout=0.1, emb_dropout=0.1)
+        self.resnet = resnet50(hidden_dim)
+        self.fc = nn.Linear(hidden_dim, num_classes)
+        self.counting = nn.Linear(hidden_dim, num_count)  # 添加用于计数的全连接层
+
+    def forward(self, x, tem):
+        vit_features = self.vit(x)
+        # resnet_features = self.resnet(x)
+        # features = torch.cat((vit_features, resnet_features), dim=1)
+        features = vit_features
+        features = features.view(features.size(0), -1)
+
+        cls = self.fc(features)
+        cou = self.counting(features)
+
+        cls = F.softmax(cls, dim=1) + 1e-4
+        cou = F.softmax(cou, dim=1) + 1e-4  # 避免除零错误
+
+        cou2cls = torch.stack((torch.sum(cou[:, :5], 1),
+                               torch.sum(cou[:, 5:20], 1),
+                               torch.sum(cou[:, 20:50], 1),
+                               torch.sum(cou[:, 50:], 1)), 1)  # 模型预测结果
+
+        # Exception
+        # cou2cou = torch.sum(cou * torch.from_numpy(np.array(range(1, 66))).float().cuda(), 1)
+
+        return cls, cou, cou2cls
+```
+
+
+
+### 【已有方法的借鉴】损失函数设置：
 
 由于我们需要同时预测图片对应的类别和痤疮的个数，我们按照ACNE04数据集中的设置，将预测个数为0-19的图片规定为第一类(class0)，预测个数为20-50的图片规定为第二类(class1)，预测个数为50-65的图片规定为第三类(class2)，预测个数超过65的图片规定为第四类(class3)，这样就只需要计算痤疮个数的损失函数了，我们用L2作为损失函数。
 $$
 L_{cou}=\sum_{i=1}^{N}(x_{cou}^{(i)}-y_{cou}^{(i)})^2
 $$
-后来发现模型效果很差，因为数据集给出了每张图片的类别标签，所以我们决定添加类别的误差项：KL散度（Kullback-Leibler Divergence），又称为相对熵，是一种衡量两个概率分布之间差异的指标。具体来说，KL散度衡量的是一个概率分布相对于另一个概率分布的差异程度。
+后来发现模型效果很差，因为数据集给出了每张图片的类别标签，所以【已有方法的借鉴】我们决定添加类别的误差项：KL散度（Kullback-Leibler Divergence），又称为相对熵，是一种衡量两个概率分布之间差异的指标。具体来说，KL散度衡量的是一个概率分布相对于另一个概率分布的差异程度。
 
 假设有两个概率分布 $P$ 和 $Q$，它们定义在同一个概率空间上。KL散度定义如下：
 $$
@@ -258,8 +307,35 @@ $$
 Loss=\frac{\alpha}{2}(L_{cou2cls}+L_{cou})+(1-\alpha)L_{cls}
 $$
 
+```python
+# generating counting_distribution
+counting = counting - 1  # ？
+counting_distribution = generate_distribution(counting, config_dict["sigma"], 'klloss', 65)
+# 计算各个类别的总和
+grading_distribution = np.vstack((np.sum(counting_distribution[:, :5], 1), np.sum(counting_distribution[:, 5:20], 1), np.sum(counting_distribution[:, 20:50], 1), np.sum(counting_distribution[:, 50:], 1))).transpose()
+counting_distribution = torch.from_numpy(counting_distribution).cuda().float()
+grading_distribution = torch.from_numpy(grading_distribution).cuda().float()
 
-### 优化器设置
+# train
+config_dict["cnn"].train()
+
+cls, cou, cou2cls = config_dict["cnn"](image, None)  # nn output
+loss_cls = config_dict["kl_loss_1"](torch.log(cls), grading_distribution) * 4.0
+loss_cou = config_dict["kl_loss_2"](torch.log(cou), counting_distribution) * 65.0
+loss_cls_cou = config_dict["kl_loss_3"](torch.log(cou2cls), grading_distribution) * 4.0
+loss = (loss_cls + loss_cls_cou) * 0.5 * config_dict["lam"] + loss_cou * (1.0 - config_dict["lam"])
+
+config_dict["optimizer"].zero_grad()           # clear gradients for this training step
+loss.backward()                 # backpropagation, compute gradients
+config_dict["optimizer"].step()                # apply gradients
+
+losses_cls.update(loss_cls.item(), image.size(0))
+losses_cou.update(loss_cou.item(), image.size(0))
+losses_cou2cls.update(loss_cls_cou.item(), image.size(0))
+losses.update(loss.item(), image.size(0))  # 更新损失函数的累计值
+```
+
+### 【已有方法】优化器设置
 
 我们选取了SGD和Adam作为我们的优化器，经过实验后我们发现Adam方法在我们的任务中更有效。
 
@@ -369,6 +445,10 @@ A1：传统深度卷积神经网络在处理高分辨率图像时可能出现低
 
 当训练图片分辨率过大时，网络的感受野（receptive field）相对于整个图片来说可能过小，这意味着网络可能无法有效地捕捉到全局和局部的特征，特别是在处理高分辨率图像时。小目标的特征可能会在下采样过程中丢失，导致网络无法有效检测到小目标。由于小目标占据的像素较少，计算损失时可能会被放大，影响训练效果。
 
+### Q2：为什么ViT的效果比较差？
+
+A2：因为ViT网络需要对图片进行patch操作，在切分的过程中，如果痤疮处在边界位置，那么痤疮可能会被重复计数，在边缘的痤疮会被计数1次，极端情况下，处于边角的痤疮会被计数4次，造成较大的计数偏差。
+
 ## 参考资料
 
 > [CCID Dataset] Quattrini A, Boër C, Leidi T, Paydar R. A Deep Learning-Based Facial Acne Classification System. Clin Cosmet Investig Dermatol. 2022;15:851-857https://doi.org/10.2147/CCID.S360450
@@ -378,3 +458,6 @@ A1：传统深度卷积神经网络在处理高分辨率图像时可能出现低
 > [Nestlé Skin Health Dataset] https://github.com/microsoft/nestle-acne-assessment
 >
 > [Flickr-Faces-HQ Dataset] https://github.com/HuynhThanhQuan/skin-detective
+> Islam, Md Baharul, Masum Shah Junayed, Arezoo Sadeghzadeh, Nipa Anjum, Afsana Ahsan, A. F. M. Shahen Shah. (2023). Acne Vulgaris Detection and Classification: A Dual Integrated Deep CNN Model.
+>
+> Lin, Yi, Jingchi Jiang, Dongxin Chen, Zhaoyang Ma, Yi Guan, Xiguang Liu, Haiyan Yo, Jing Yang. DED: Diagnostic Evidence Distillation for Acne Severity Grading on Face Images. Expert Systems with Applications 228 (2023): 120312. 

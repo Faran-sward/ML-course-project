@@ -2,6 +2,13 @@ import sys
 from torch.nn import init
 import torch.nn as nn
 
+"""
+这段代码实现了基本统计工具。
+
+代码引用于 https://github.com/xpwu95/LDL
+
+作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+"""
 
 # evaluate meters
 class AverageMeter(object):

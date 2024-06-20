@@ -26,6 +26,13 @@ def conv3x3(in_planes, out_planes, stride=1):
 
 
 class BasicBlock(nn.Module):  # ResNet模型中基本块定义
+    """
+    这段代码实现了ResNet基本块。
+
+    代码引用于 https://github.com/xpwu95/LDL
+
+    作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+    """
     # 表示输出通道数与输入通道数相等，基本块中的第二个卷积层的输入和输出通道数相同
     expansion = 1  # 控制基本块中的通道数倍增量
     def __init__(self, inplanes, planes, stride=1, downsample=None):
@@ -58,6 +65,13 @@ class BasicBlock(nn.Module):  # ResNet模型中基本块定义
 
 
 class Bottleneck(nn.Module):
+    """
+    这段代码实现了ResNet框架。
+
+    代码引用于 https://github.com/xpwu95/LDL
+
+    作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+    """
     expansion = 4
 
     def __init__(self, inplanes, planes, stride=1, downsample=None):
@@ -111,7 +125,13 @@ def weights_init(m):
 
 
 class ResNet(nn.Module):
+    """
+    这段代码实现了ResNet框架。
 
+    代码引用于 https://github.com/xpwu95/LDL
+
+    作者：Wu, Xiaoping, Ni, Wen, Jie, Liang, Lai, Yu-Kun, Cheng, Dongyu, She, Ming-Ming, & Yang, Jufeng
+    """
     def __init__(self, block, layers, num_classes=1000):
         self.inplanes = 64
         super(ResNet, self).__init__()
